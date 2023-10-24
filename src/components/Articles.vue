@@ -29,9 +29,10 @@ let articles =
 
 function mounted(){
   // var self = this //?
+  //axios plugin
+
   $.getJSON(dataURL, function (data) {
     articles = data;
-    
     
   });
   return articles;
