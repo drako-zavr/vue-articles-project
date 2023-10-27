@@ -1,18 +1,54 @@
 <script setup>
-// defineProps({
-//   arr: {
-//     type: Array,
-//     required: true
-//   }
-// })
 
+import axios from 'axios'
 import { reactive, ref } from 'vue'
 import { jsx } from 'vue/jsx-runtime';
 
+// export default {
+//   data(){
+//     return{
+//       articles:[],
+//       size: 3,
+//       pageNumber: 0,
 
+//     }
+//   },
+//   methods: {
+//     getArticles(){
+//       // axios.get('https://jsonplaceholder.typicode.com/posts?_limit=20')
+// // .then(res =>(articles));
+
+//     },
+//     nextPage() {
+//   counter.pageNumber++;
+// },
+// prevPage() {
+//   counter.pageNumber--;
+// },
+// selectPage(page) {
+//   counter.pageNumber = page;
+// },
+// pageCount() {
+//   let l = articles.length,
+//     s = size;
+//   return Math.ceil(l / s);
+// },
+// paginatedData() {
+//   const start = counter.pageNumber * size,
+//     end = start + size;
+//   // return articles.slice(start, end);
+//   return articles
+//         .slice(start, end);
+//         //nn
+// }
+
+//   },
+
+// }
 
 
 var dataURL = 'https://jsonplaceholder.typicode.com/posts?_limit=20';
+
 const size = 3
 // let pageNumber = 0
 
@@ -35,14 +71,12 @@ function mounted(){
     articles = data;
     
   });
-  return articles;
+//  return articles;
+  // axios.get('https://jsonplaceholder.typicode.com/posts?_limit=20')
+// .then(res =>(articles));
 
 }
 mounted()
-// (async function() {
-//   await mounted();
-//   // other things after script loaded
-// })();
 
 
 
@@ -94,11 +128,11 @@ function paginatedData() {
       </button>
 
 
-      <div v-for="a in pageCount()">
+      <div v-for="a in pageCount()" >
         <button class="pagination__button" @click="selectPage(a)">{{ a }}</button>
       </div>
 
-      <button class="pagination__button" :disabled="counter.pageNumber >= pageCount() - 1" @click="nextPage">
+      <button class="pagination__button " :disabled="counter.pageNumber >= pageCount() - 1" @click="nextPage">
         &#62;&#62;
       </button>
       <!-- <button class="pagination__button" @click="articles.push({
