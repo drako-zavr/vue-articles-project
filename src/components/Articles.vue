@@ -4,18 +4,20 @@ import axios from 'axios'
 import { reactive, ref } from 'vue'
 import { jsx } from 'vue/jsx-runtime';
 
+
 export default {
   data(){
     return{
-      articles:
-      [ { "userId": 1, "id": 1, "title": "test1", "body": "default data" },
-      { "userId": 1, "id": 2, "title": "test2", "body": "default data" }],
+    //   articles:
+    //   [ 
+    //   //   { "userId": 1, "id": 1, "title": "test1", "body": "default data" },
+    //   // { "userId": 1, "id": 2, "title": "test2", "body": "default data" }
+    // ],
       pageNumber: 0,
-
     }
   },
   props: {
-    listData: {
+    articles: {
       type: Array,
       required: true
     },
@@ -26,51 +28,46 @@ export default {
     }
   },
   methods: {
-    getArticles(){
-      axios.get('https://jsonplaceholder.typicode.com/posts?_limit=20')
-      .then(res =>{
-        this.articles=res;
-        console.log("AAAAAA");});
+    // getArticles(){
+    //   axios.get('https://jsonplaceholder.typicode.com/posts?_limit=20')
+    //   .then(res =>{
+    //     this.articles=res;
+    //     //console.log("AAAAAA");
+    //   });
 
-    },
+    // },
     nextPage() {
-  this.pageNumber++;
-},
-prevPage() {
-  this.pageNumber--;
-},
-selectPage(page) {
-  this.pageNumber = page;
-},
-pageCount() {
-  let l = this.articles.length,
-    s = this.size;
-  return Math.ceil(l / s);
-},
-paginatedData() {
-  const start = this.pageNumber * this.size,
-    end = start + this.size;
-  // return articles.slice(start, end);
-  return this.articles
+      this.pageNumber++;
+    },
+    prevPage() {
+      this.pageNumber--;
+    },
+    selectPage(page) {
+      this.pageNumber = page;
+    },
+    pageCount() {
+      let l = this.articles.length,
+      s = this.size;
+      return Math.ceil(l / s);
+    },
+    paginatedData() {
+      const start = this.pageNumber * this.size,
+      end = start + this.size;
+      return this.articles
         .slice(start, end);
-        
-},
-
+      },
 
   },
   computed:{
-
-},
-  mounted(){
- // getArticles();
- axios.get('https://jsonplaceholder.typicode.com/posts?_limit=20')
-.then(res =>{
-  this.articles=res.data;
-  console.log("AAAAAA");
-});
-
- 
-}
+   //?
+    },
+    // mounted(){
+    //   axios.get('https://jsonplaceholder.typicode.com/posts?_limit=20')
+    //   .then(res =>{
+    //     this.articles=res.data;
+    //     console.log("Axios downloaded data");
+    //   });
+    // }
 
 }
 
@@ -131,7 +128,7 @@ paginatedData() {
 //   // return articles.slice(start, end);
 //   return articles
 //         .slice(start, end);
-//         //nn
+//       
 // }
 
 
@@ -140,7 +137,7 @@ paginatedData() {
 
 <template>
   <div>
-    <!-- <p>{{ articles }}</p> -->
+    <!-- <p>{{ listData }}</p> -->
 
     <div v-for="p in paginatedData()">
 
@@ -167,7 +164,6 @@ paginatedData() {
     
 
     </div>
-
   </div>
 
 

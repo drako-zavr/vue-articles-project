@@ -1,31 +1,53 @@
 <script setup>
-import NewArrticle from './components/NewArticle.vue'
+import NewArticle from './components/NewArticle.vue'
 import Articles from './components/Articles.vue'
 import axios from 'axios'
-var dataURL = 'https://jsonplaceholder.typicode.com/posts?_limit=20';
+//var dataURL = 'https://jsonplaceholder.typicode.com/posts?_limit=20';
+</script>
+<script>
 
-let articles1 = []
-// function mounted(){
-//   // var self = this //?
-//   $.getJSON(dataURL, function (data) {
-//     articles = data;
-//   });
-// }
+export default {
+  data(){
+    return{
+      articles:
+      [ { "userId": 1, "id": 1, "title": "AAAA", "body": "default data" },
+      { "userId": 1, "id": 2, "title": "AAAA", "body": "default data" }],
+      pageNumber: 0,
 
-axios.get('https://jsonplaceholder.typicode.com/posts?_limit=20')
-      .then(res =>{
-        articles1=res;
-        console.log("axios");});
+    }
+  },
+  props: {
+    listData: {
+      type: Array,
+      //required: true
+    },
+    size: {
+      type: Number,
+      required: false,
+      default: 6
+    }
+  },
+ 
+  mounted(){
+    axios.get('https://jsonplaceholder.typicode.com/posts?_limit=20')
+    .then(res =>{
+      this.articles=res.data;
+    });
+  }
+
+}
 </script>
 
 <template>
 
   <img class="logo" src="src/assets/logo1.svg" alt="">
-  <p>{{ articles }}</p>
+  <!-- <p>b{{ articles }}</p> -->
 
-  <NewArrticle />
+
+  <NewArticle />
   <h1>Статьи</h1>
-  <Articles list-data="articles1"/>
+
+  <Articles :articles="articles"></Articles>
 
 </template>
 
