@@ -88,11 +88,11 @@ body {
   font-weight: 700;
   line-height: 150%;
   margin-bottom: 45px;
-}
-.article-form__button :hover{
   cursor: pointer;
 }
-
+.article-form__button :active{
+  background: #2b4f7b;
+}
 
 h1 {
   color: #FFF;

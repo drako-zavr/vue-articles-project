@@ -6,6 +6,7 @@ import axios from 'axios'
 </script>
 <script>
 
+
 export default {
   data(){
     return{
@@ -13,19 +14,24 @@ export default {
       [ { "userId": 1, "id": 1, "title": "AAAA", "body": "default data" },
       { "userId": 1, "id": 2, "title": "AAAA", "body": "default data" }],
       pageNumber: 0,
+      title:'',
+      body:''
 
     }
   },
-  props: {
-    listData: {
-      type: Array,
-      //required: true
-    },
-    size: {
-      type: Number,
-      required: false,
-      default: 6
-    }
+
+  methods: {
+    addArticle(newtitle, newbody) {
+      if (this.title != '' && this.body != '') {
+        this.articles.push({
+          title: newtitle,
+          body: newbody
+        });
+      };
+
+  this.title = '';
+  this.body = '';
+},
   },
  
   mounted(){
@@ -41,10 +47,16 @@ export default {
 <template>
 
   <img class="logo" src="src/assets/logo1.svg" alt="">
-  <!-- <p>b{{ articles }}</p> -->
+  
+  <form id="articleform" class="article-form" v-on:submit.prevent="addArticle(title, body)">
+    <input name="title" id="title" ref="inputtitle" class="article-form__input" type="text"
+      placeholder="Введите Название статьи" v-model="title">
+    <input name="body" id="body" class="article-form__input" type="text" placeholder="Введите Основной текст"
+      v-model="body">
+    <button id="createarticle" type="submit" class="article-form__button">Добавить новую статью</button>
+  </form>
 
-
-  <NewArticle />
+  <!-- <NewArticle /> -->
   <h1>Статьи</h1>
 
   <Articles :articles="articles"></Articles>

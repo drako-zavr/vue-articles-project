@@ -1,18 +1,17 @@
 <script setup>
 // import Articles from './Articles.vue';
- import App from '../App.vue';
+ import articles from '../App.vue';
 
 let title = '';
 let body = '';
 
 function addArticle(newtitle, newbody) {
   if (title != '' && body != '') {
-    App.articles.push({
+    articles.push({
       title: newtitle,
       body: newbody
     });
   };
- 
 
   title = '';
   body = '';
@@ -22,7 +21,7 @@ function addArticle(newtitle, newbody) {
 </script>
 
 <template>
-  <!-- <p>a{{ articles.articles }}</p> -->
+  <!-- <p>a{{ articles.articlesm }}</p> -->
   <form id="articleform" class="article-form" v-on:submit.prevent="addArticle(title, body)">
     <input name="title" id="title" ref="inputtitle" class="article-form__input" type="text"
       placeholder="Введите Название статьи" v-model="title">
