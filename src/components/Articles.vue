@@ -61,7 +61,6 @@ export default {
 
 <template>
   <div>
-    <!-- <p>{{ listData }}</p> -->
 
     <div v-for="p in paginatedData()">
 

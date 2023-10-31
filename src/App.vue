@@ -2,11 +2,11 @@
 import NewArticle from './components/NewArticle.vue'
 import Articles from './components/Articles.vue'
 import axios from 'axios'
-//var dataURL = 'https://jsonplaceholder.typicode.com/posts?_limit=20';
+
 </script>
 <script>
 
-
+ 
 export default {
   data(){
     return{
@@ -59,7 +59,7 @@ export default {
   <!-- <NewArticle /> -->
   <h1>Статьи</h1>
 
-  <Articles :articles="articles"></Articles>
+  <Articles :articles="articles" ></Articles>
 
 </template>
 
